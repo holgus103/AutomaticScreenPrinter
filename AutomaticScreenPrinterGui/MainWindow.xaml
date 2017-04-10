@@ -1,0 +1,18 @@
+﻿<Window x:Class="AutomaticScreenPrinterGui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AutomaticScreenPrinterGui"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Label x:Name="IntervalLbl" Content="Interval:" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="IntervalTb" HorizontalAlignment="Left" Height="23" Margin="73,44,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="StartBtn" Content="Start" HorizontalAlignment="Left" Margin="391,257,0,0" VerticalAlignment="Top" Width="75" Click="StartBtn_Click"/>
+        <Label x:Name="LocationLbl" Content="Location:" HorizontalAlignment="Left" Margin="10,87,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="LocationValueLbl" Content="" HorizontalAlignment="Left" Margin="73,87,0,0" VerticalAlignment="Top" Width="393"/>
+        <Button x:Name="BrowserBtn" Content="Browse" HorizontalAlignment="Left" Margin="391,118,0,0" VerticalAlignment="Top" Width="75" Click="BrowserBtn_Click"/>
+
+    </Grid>
+</Window>
