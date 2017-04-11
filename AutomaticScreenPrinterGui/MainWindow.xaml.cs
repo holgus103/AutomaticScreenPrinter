@@ -1,22 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Forms;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using AutomaticScreenPrinterGui.Const;
-using Microsoft.Win32;
 using static System.Windows.Forms.DialogResult;
-using Application = System.Windows.Application;
+using Brushes = System.Windows.Media.Brushes;
+
 
 namespace AutomaticScreenPrinterGui
 {
@@ -57,10 +45,15 @@ namespace AutomaticScreenPrinterGui
                 this.initValues();
                 return;
             }
-            //if (this.appInstance.FilePath == null)
-            //{
-            //    this.LocationValueLbl.Foreground = 
-            //}
+            if (this.appInstance.FilePath == null)
+            {
+                this.LocationLbl.Foreground = Brushes.Red;
+                return;
+            }
+            else
+            {
+                this.LocationLbl.Foreground = Brushes.Black;
+            }
             try
             {
                 var interval = Int32.Parse(this.IntervalTb.Text);
@@ -72,9 +65,10 @@ namespace AutomaticScreenPrinterGui
             }
             catch (Exception ex)
             {
+                this.IntervalLbl.Foreground = Brushes.Red;
                 return;
             }
-
+            this.IntervalLbl.Foreground = Brushes.Black;
             this.appInstance.Execute();
             this.StatusValueLbl.Content = eStatus.Capturing.ToString();
             this.StartBtn.Content = eButtonValues.Stop.ToString();
