@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using AutomaticScreenPrinterGui.Const;
 using Microsoft.Win32;
 using static System.Windows.Forms.DialogResult;
 using Application = System.Windows.Application;
@@ -29,6 +30,13 @@ namespace AutomaticScreenPrinterGui
         {
             this.appInstance = app;
             InitializeComponent();
+            this.initValues();
+        }
+
+        private void initValues()
+        {
+            this.StatusValueLbl.Content = eStatus.Stopped.ToString();
+            this.StartBtn.Content = eButtonValues.Start.ToString();
         }
 
         private void BrowserBtn_Click(object sender, RoutedEventArgs e)
@@ -43,6 +51,16 @@ namespace AutomaticScreenPrinterGui
 
         private void StartBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (this.appInstance.Status)
+            {
+                this.appInstance.Stop();
+                this.initValues();
+                return;
+            }
+            //if (this.appInstance.FilePath == null)
+            //{
+            //    this.LocationValueLbl.Foreground = 
+            //}
             try
             {
                 var interval = Int32.Parse(this.IntervalTb.Text);
@@ -54,9 +72,13 @@ namespace AutomaticScreenPrinterGui
             }
             catch (Exception ex)
             {
-                //this.IntervalTb.TextDecorations.
+                return;
             }
+
             this.appInstance.Execute();
+            this.StatusValueLbl.Content = eStatus.Capturing.ToString();
+            this.StartBtn.Content = eButtonValues.Stop.ToString();
+
         }
     }
 }

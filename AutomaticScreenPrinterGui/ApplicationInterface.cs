@@ -10,6 +10,8 @@ namespace AutomaticScreenPrinterGui
     {
         string FilePath { get; set; }
         int Interval { get; set; }
+        bool Status { get; }
+        void Stop();
         void Execute();
     }
 }

@@ -13,6 +13,8 @@
         <Label x:Name="LocationLbl" Content="Location:" HorizontalAlignment="Left" Margin="10,87,0,0" VerticalAlignment="Top"/>
         <Label x:Name="LocationValueLbl" Content="" HorizontalAlignment="Left" Margin="73,87,0,0" VerticalAlignment="Top" Width="393"/>
         <Button x:Name="BrowserBtn" Content="Browse" HorizontalAlignment="Left" Margin="391,118,0,0" VerticalAlignment="Top" Width="75" Click="BrowserBtn_Click"/>
+        <Label x:Name="StatusLbl" Content="Status:" HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.605,-0.615"/>
+        <Label x:Name="StatusValueLbl" Content="Stopped" HorizontalAlignment="Left" Margin="60,120,0,0" VerticalAlignment="Top" RenderTransformOrigin="-3.605,-0.615"/>
 
     </Grid>
 </Window>
