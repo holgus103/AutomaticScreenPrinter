@@ -14,18 +14,20 @@ type ScreenPrinterApplication() =
     interface IApplicationInterface with
         member val FilePath = "" with get, set
         member val Interval = 5000 with get, set
-        member this.Execute () = 
+        member this.Execute ()  = 
             let timer = new System.Timers.Timer()
-            //timer.Interval <- this.Interval
+            timer.Interval <- (this :> IApplicationInterface).Interval |> float
             timer.Enabled <- true
             timer.AutoReset <- true
             timer.Start()
-            let screen = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height)
-            let gfx = Graphics.FromImage(screen)
-            gfx.CopyFromScreen(0, 0, 0, 0, screen.Size)
-            let path = @"C:\temp" + "\\" + DateTime.Now.ToString().Replace('/', '-').Replace(':', '-') + ".jpg"
-            screen.Save(path, ImageFormat.Jpeg)
+            timer.Elapsed.Add(fun x -> 
+                let screen = new Bitmap(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height)
+                let gfx = Graphics.FromImage(screen)
+                gfx.CopyFromScreen(0, 0, 0, 0, screen.Size)
+                let path = (this :> IApplicationInterface).FilePath + "\\" + DateTime.Now.ToString().Replace('/', '-').Replace(':', '-') + ".jpg"
+                screen.Save(path, ImageFormat.Jpeg))
             ()
+
     
 
             
